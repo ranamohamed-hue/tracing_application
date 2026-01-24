@@ -8,16 +8,18 @@ class AppbarPart extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       centerTitle: true,
-      
-      toolbarHeight: 120.0, 
-      
+
+      toolbarHeight: 120.0,
+
       backgroundColor: Colors.transparent,
+
       elevation: 0,
-      
+
       title: Text(
         title,
         style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-          fontWeight: FontWeight.bold,fontSize: 25
+          fontWeight: FontWeight.bold,
+          fontSize: 25,
         ),
       ),
 
@@ -27,18 +29,14 @@ class AppbarPart extends StatelessWidget implements PreferredSizeWidget {
           child: Stack(
             clipBehavior: Clip.none,
             children: [
-              Icon(
-                Icons.location_on,
-                color: const Color.fromARGB(255, 20, 20, 20),
-                size: 90.0, 
-              ),
+              Icon(Icons.location_on, color: Colors.white, size: 90.0),
               Positioned(
-                left: 20, 
-                top: 15,  
+                left: 13,
+                top: 9,
                 child: Icon(
                   Icons.directions_walk,
-                  color: Colors.white,
-                  size: 50.0, 
+                  color: Colors.black,
+                  size: 65.0,
                 ),
               ),
             ],

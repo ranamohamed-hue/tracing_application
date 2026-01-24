@@ -11,7 +11,9 @@ class _ProfileBageState extends State<ProfileBage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(),
+      body: Container(
+        
+        child: Center(child: Text("الملف الشخصي"))),
     );
   }
 }

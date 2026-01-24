@@ -13,7 +13,7 @@ class AppTheme {
 
       colorScheme: const ColorScheme.light(
         primary: AppColors.lightPrimary,
-        background: AppColors.lightBackground,
+        background: Color.fromARGB(255, 192, 221, 229),
         surface: AppColors.lightSurface,
         onPrimary: Colors.white,
         onBackground: AppColors.lightText,
@@ -142,21 +142,13 @@ class AppTheme {
           borderRadius: BorderRadius.circular(15),
           borderSide: const BorderSide(color: AppColors.lightPrimary, width: 2),
         ),
-        // --- الإضافة هنا: حالة الخطأ ---
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15.0), // نفس الاستدارة
-          borderSide: const BorderSide(
-            color: AppColors.error, // لون الخطأ
-            width: 2, // نفس سماكة الحد عند التركيز
-          ),
+          borderRadius: BorderRadius.circular(15.0),
+          borderSide: const BorderSide(color: AppColors.error, width: 2),
         ),
-        // --- الإضافة هنا: حالة التركيز مع وجود خطأ ---
         focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15.0), // نفس الاستدارة
-          borderSide: const BorderSide(
-            color: AppColors.error, // لون الخطأ
-            width: 2, // نفس سماكة الحد
-          ),
+          borderRadius: BorderRadius.circular(15.0),
+          borderSide: const BorderSide(color: AppColors.error, width: 2),
         ),
         hintStyle: AppTextStyles.bodyMedium.copyWith(
           color: Colors.grey,
@@ -184,6 +176,17 @@ class AppTheme {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(12)),
         ),
+      ),
+
+      snackBarTheme: SnackBarThemeData(
+        backgroundColor: Colors.green,
+        contentTextStyle: AppTextStyles.bodyMedium?.copyWith(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        behavior: SnackBarBehavior.floating,
+        elevation: 4,
       ),
     );
   }
@@ -292,7 +295,6 @@ class AppTheme {
         ),
       ),
 
-      // --- إضافة كاملة لـ inputDecorationTheme في الوضع الداكن ---
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: AppColors.darkSurface,
@@ -304,21 +306,13 @@ class AppTheme {
           borderRadius: BorderRadius.circular(15),
           borderSide: const BorderSide(color: AppColors.darkPrimary, width: 2),
         ),
-        // --- حالة الخطأ في الوضع الداكن ---
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15.0),
-          borderSide: const BorderSide(
-            color: AppColors.error,
-            width: 2,
-          ),
+          borderSide: const BorderSide(color: AppColors.error, width: 2),
         ),
-        // --- حالة التركيز مع وجود خطأ في الوضع الداكن ---
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15.0),
-          borderSide: const BorderSide(
-            color: AppColors.error,
-            width: 2,
-          ),
+          borderSide: const BorderSide(color: AppColors.error, width: 2),
         ),
         hintStyle: AppTextStyles.bodyMedium.copyWith(
           color: Colors.grey,
@@ -346,6 +340,17 @@ class AppTheme {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(12)),
         ),
+      ),
+
+      snackBarTheme: SnackBarThemeData(
+        backgroundColor: Colors.green,
+        contentTextStyle: AppTextStyles.bodyMedium?.copyWith(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        behavior: SnackBarBehavior.floating,
+        elevation: 4,
       ),
     );
   }
