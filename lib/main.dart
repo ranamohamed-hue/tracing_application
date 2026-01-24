@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tracing_app/core/theming/app_theme.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:tracing_app/feature/login/screens/verification_page.dart';
-import 'package:tracing_app/feature/parent/screens/parent_page.dart';
+import 'package:tracing_app/feature/student/screens/student_page.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,7 +27,7 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.system,
-      home: ParentPage()
+      home: StudentPage(),
     );
   }
 }

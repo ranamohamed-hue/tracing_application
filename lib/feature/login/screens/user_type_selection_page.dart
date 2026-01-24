@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tracing_app/core/widgets/appbar_part.dart'; // استيراد AppbarPart
 import 'package:tracing_app/feature/parent/screens/parent_page.dart';
-import 'package:tracing_app/feature/student/student_page.dart';
+import 'package:tracing_app/feature/student/screens/student_page.dart';
 
 enum UserType { student, parent }
 

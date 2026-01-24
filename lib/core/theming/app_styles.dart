@@ -8,7 +8,7 @@ class AppStyles {
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,
       colors: [
-        Color.fromARGB(255, 21, 101, 192), // لون أزرق داكن (Primary Dark)
+        Color.fromARGB(255, 21, 101, 192), 
          Color.fromARGB(255, 178, 198, 211),
       ],
     ),

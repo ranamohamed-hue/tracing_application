@@ -11,7 +11,7 @@ class AppbarPart extends StatelessWidget implements PreferredSizeWidget {
 
       toolbarHeight: 120.0,
 
-      backgroundColor: Colors.transparent,
+      backgroundColor: Color.fromARGB(255, 21, 101, 192),
 
       elevation: 0,
 
@@ -47,5 +47,5 @@ class AppbarPart extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(100.0); // يجب أن يطابق قيمة toolbarHeight
+  Size get preferredSize => const Size.fromHeight(100.0); 
 }
