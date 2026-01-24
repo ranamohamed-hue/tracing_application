@@ -25,7 +25,7 @@ class HomePage extends StatelessWidget {
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
             ),
       
-            const SizedBox(height: 40),
+            const SizedBox(height: 20),
       
             ElevatedButtonWidget(
               onpress: () {

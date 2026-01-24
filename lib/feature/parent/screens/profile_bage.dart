@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tracing_app/core/theming/app_styles.dart';
 
 class ProfileBage extends StatefulWidget {
   const ProfileBage({super.key});
@@ -12,7 +13,7 @@ class _ProfileBageState extends State<ProfileBage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        
+        decoration: AppStyles.primaryGradientDecoration,
         child: Center(child: Text("الملف الشخصي"))),
     );
   }

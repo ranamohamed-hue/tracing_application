@@ -6,7 +6,7 @@ class AppColors {
       Color(0xFF0A0A3C); 
 
   static const Color lightBackground =
-      Color.fromARGB(255, 93, 172, 196); 
+     Color.fromARGB(255, 21, 101, 192);
 
   static const Color lightSurface =
       Color(0xFFFFFFFF); 

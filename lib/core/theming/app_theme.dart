@@ -13,7 +13,7 @@ class AppTheme {
 
       colorScheme: const ColorScheme.light(
         primary: AppColors.lightPrimary,
-        background: Color.fromARGB(255, 192, 202, 229),
+        background: AppColors.lightBackground,
         surface: AppColors.lightSurface,
         onPrimary: Colors.white,
         onBackground: AppColors.lightText,

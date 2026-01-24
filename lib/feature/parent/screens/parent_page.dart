@@ -53,30 +53,33 @@ class _ParentPageState extends State<ParentPage> {
         child: pages[currentIndex],
       ),
       bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-            topRight: Radius.circular(30),
-            topLeft: Radius.circular(30),
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.1),
-              spreadRadius: 1,
-              blurRadius: 5,
-              offset: const Offset(0, 3),
+        color: Color.fromARGB(255, 178, 198, 211),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topRight: Radius.circular(30),
+              topLeft: Radius.circular(30),
             ),
-          ],
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              _buildBottomNavBarItem(icon: Icons.home, index: 0),
-              _buildBottomNavBarItem(icon: Icons.notifications, index: 1),
-              _buildBottomNavBarItem(icon: Icons.person, index: 2),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.1),
+                spreadRadius: 1,
+                blurRadius: 5,
+                offset: const Offset(0, 3),
+              ),
             ],
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                _buildBottomNavBarItem(icon: Icons.home, index: 0),
+                _buildBottomNavBarItem(icon: Icons.notifications, index: 1),
+                _buildBottomNavBarItem(icon: Icons.person, index: 2),
+              ],
+            ),
           ),
         ),
       ),

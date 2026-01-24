@@ -11,7 +11,7 @@ class AppbarPart extends StatelessWidget implements PreferredSizeWidget {
 
       toolbarHeight: 120.0,
 
-      backgroundColor: Color.fromARGB(255, 21, 101, 192),
+      backgroundColor: Colors.transparent,
 
       elevation: 0,
 
