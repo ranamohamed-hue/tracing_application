@@ -12,7 +12,8 @@ class _NotificationPageState extends State<NotificationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(decoration: AppStyles.primaryGradientDecoration,
+      body: Container(constraints: const BoxConstraints.expand(),
+        decoration: AppStyles.primaryGradientDecoration,
         child: Center(child: Text("التنبيهات "),),
       ),
     );

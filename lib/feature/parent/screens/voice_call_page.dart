@@ -12,7 +12,8 @@ class _VoiceCallPageState extends State<VoiceCallPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(decoration: AppStyles.primaryGradientDecoration,
+      body: Container(constraints: const BoxConstraints.expand(),
+        decoration: AppStyles.primaryGradientDecoration,
          child: Center(
           child: Text("مكالمة صوتية ",style:TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
         ),

@@ -4,21 +4,21 @@ import 'package:tracing_app/core/widgets/appbar_part.dart';
 import 'package:tracing_app/feature/login/widgets/login_prompt_widget.dart';
 import 'package:tracing_app/feature/login/widgets/text_form_field_widget.dart';
 
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
+class LocationScreenPage extends StatefulWidget {
+  const LocationScreenPage({super.key});
 
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  State<LocationScreenPage> createState() => _LocationScreenPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _LocationScreenPageState extends State<LocationScreenPage> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _usernamee = TextEditingController();
   final TextEditingController _useremail = TextEditingController();
   final TextEditingController _userpassword = TextEditingController();
 
-  
-  String _userRole = 'طالب'; 
+  // متغير لتخزين نوع المستخدم المختار
+  String _userRole = 'طالب'; // القيمة الافتراضية هي "طالب"
 
   @override
   void dispose() {

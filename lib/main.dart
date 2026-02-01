@@ -2,10 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tracing_app/core/theming/app_theme.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:tracing_app/feature/parent/screens/parent_page.dart';
+import 'package:tracing_app/feature/location_page/screens/location_page.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
   runApp(MyApp());
 }
@@ -27,7 +32,7 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.system,
-      home:ParentPage()
+      home: LocationPage(),
     );
   }
 }

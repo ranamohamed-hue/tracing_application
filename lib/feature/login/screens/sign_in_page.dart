@@ -33,7 +33,9 @@ class _SignInPageState extends State<SignInPage> {
       ),
       child: Scaffold(
         appBar: AppbarPart(title: "تسجيل الدخول"),
-        body: Container(decoration: AppStyles.primaryGradientDecoration,
+        body: Container(
+          constraints: const BoxConstraints.expand(),
+          decoration: AppStyles.primaryGradientDecoration,
           child: Padding(
             padding: EdgeInsets.only(
               bottom: MediaQuery.of(context).viewInsets.bottom,
@@ -46,6 +48,7 @@ class _SignInPageState extends State<SignInPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
+                    SizedBox(height: 40),
                     TextFormFieldWidget(
                       title: "البريد الإلكتروني",
                       hinttext: "أدخل بريدك الإلكتروني",
@@ -59,8 +62,8 @@ class _SignInPageState extends State<SignInPage> {
                         return null;
                       },
                     ),
-                    const SizedBox(height: 10),
-          
+                    const SizedBox(height: 24),
+
                     TextFormFieldWidget(
                       title: "كلمة المرور",
                       hinttext: "أدخل كلمة المرور",
@@ -104,7 +107,7 @@ class _SignInPageState extends State<SignInPage> {
                       ),
                     ),
                     const SizedBox(height: 20),
-          
+
                     Center(
                       child: SizedBox(
                         width: 200,
@@ -119,7 +122,7 @@ class _SignInPageState extends State<SignInPage> {
                       ),
                     ),
                     const SizedBox(height: 25),
-          
+
                     // --- رابط إنشاء حساب جديد ---
                     LoginPromptWidget(
                       comment: "ليس لديك حساب؟ ",

@@ -13,6 +13,7 @@ class _ProfileBageState extends State<ProfileBage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        constraints: const BoxConstraints.expand(),
         decoration: AppStyles.primaryGradientDecoration,
         child: Center(child: Text("الملف الشخصي"))),
     );

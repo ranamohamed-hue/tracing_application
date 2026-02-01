@@ -10,42 +10,32 @@ class AppbarPart extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: true,
 
       toolbarHeight: 120.0,
-
       backgroundColor: Colors.transparent,
-
       elevation: 0,
 
-      title: Text(
-        title,
-        style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-          fontWeight: FontWeight.bold,
-          fontSize: 25,
-        ),
-      ),
-
-      actions: [
-        Padding(
-          padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-          child: Stack(
-            clipBehavior: Clip.none,
-            children: [
-              Icon(Icons.location_on, color: Colors.white, size: 90.0),
-              Positioned(
-                left: 13,
-                top: 9,
-                child: Icon(
-                  Icons.directions_walk,
-                  color: Colors.black,
-                  size: 65.0,
-                ),
-              ),
-            ],
+      title: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SizedBox(width: 5),
+          Text(
+            title,
+            style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+              fontWeight: FontWeight.bold,
+              fontSize: 50,
+            ),
           ),
-        ),
-      ],
+          const SizedBox(width: 80),
+
+          SizedBox(
+            height: 100,
+            width: 70,
+            child: Image.asset("assets/logoi.png"),
+          ),
+        ],
+      ),
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(100.0); 
+  Size get preferredSize => const Size.fromHeight(120.0);
 }

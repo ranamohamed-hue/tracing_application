@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:tracing_app/core/widgets/appbar_part.dart'; // استيراد AppbarPart
+import 'package:tracing_app/core/theming/app_styles.dart';
 import 'package:tracing_app/feature/parent/screens/parent_page.dart';
 import 'package:tracing_app/feature/student/screens/student_page.dart';
 
@@ -53,52 +53,56 @@ class _UserTypeSelectionPageState extends State<UserTypeSelectionPage> {
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(24.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const SizedBox(height: 40),
-            Text(
-              "قم بالاختيار للمتابعة في التطبيق",
-              style: theme.textTheme.headlineSmall?.copyWith(
-                color: theme.textTheme.headlineSmall?.color, 
-                fontWeight: FontWeight.bold,
+      body: Container(
+        constraints: const BoxConstraints.expand(),
+        decoration: AppStyles.primaryGradientDecoration,
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const SizedBox(height: 40),
+              Text(
+                "قم بالاختيار للمتابعة في التطبيق",
+                style: theme.textTheme.headlineSmall?.copyWith(
+                  color: theme.textTheme.headlineSmall?.color,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
               ),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 50),
-//ولي الامر
-            _buildSelectionCard(
-              icon: Icons.family_restroom,
-              label: "ولي أمر",
-              value: UserType.parent,
-            ),
-            const SizedBox(height: 20),
+              const SizedBox(height: 50),
+              //ولي الامر
+              _buildSelectionCard(
+                icon: Icons.family_restroom,
+                label: "ولي أمر",
+                value: UserType.parent,
+              ),
+              const SizedBox(height: 20),
 
-            //  الطالب
-            _buildSelectionCard(
-              icon: Icons.school_outlined,
-              label: "طالب",
-              value: UserType.student,
-            ),
+              //  الطالب
+              _buildSelectionCard(
+                icon: Icons.school_outlined,
+                label: "طالب",
+                value: UserType.student,
+              ),
 
-            const SizedBox(height: 50),
+              const SizedBox(height: 50),
 
-            ElevatedButton(
-              onPressed: _navigateToSelectedPage,
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
+              ElevatedButton(
+                onPressed: _navigateToSelectedPage,
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                child: const Text(
+                  "متابعة",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
-              child: const Text(
-                "متابعة",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -114,13 +118,17 @@ class _UserTypeSelectionPageState extends State<UserTypeSelectionPage> {
     final isSelected = (selectedType == value);
 
     return Card(
-      color: isSelected ? theme.colorScheme.primary.withOpacity(0.1) : theme.cardTheme.color,
+      color:
+          isSelected
+              ? theme.colorScheme.primary.withOpacity(0.1)
+              : theme.cardTheme.color,
       elevation: isSelected ? 4 : 2,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
-        side: isSelected
-            ? BorderSide(color: theme.colorScheme.primary, width: 2)
-            : BorderSide.none,
+        side:
+            isSelected
+                ? BorderSide(color: theme.colorScheme.primary, width: 2)
+                : BorderSide.none,
       ),
       child: InkWell(
         onTap: () => _selectType(value),
@@ -136,18 +144,21 @@ class _UserTypeSelectionPageState extends State<UserTypeSelectionPage> {
                   if (val != null) _selectType(val);
                 },
                 //  لون الراديو
-                fillColor: MaterialStateProperty.resolveWith((states) =>
-                    states.contains(MaterialState.selected)
-                        ? theme.colorScheme.primary
-                        : theme.unselectedWidgetColor),
+                fillColor: MaterialStateProperty.resolveWith(
+                  (states) =>
+                      states.contains(MaterialState.selected)
+                          ? theme.colorScheme.primary
+                          : theme.unselectedWidgetColor,
+                ),
               ),
               const SizedBox(width: 20),
               Text(
                 label,
                 style: theme.textTheme.titleLarge?.copyWith(
-                  color: isSelected
-                      ? theme.colorScheme.primary
-                      : theme.textTheme.titleLarge?.color,
+                  color:
+                      isSelected
+                          ? theme.colorScheme.primary
+                          : theme.textTheme.titleLarge?.color,
                   fontWeight: FontWeight.bold,
                 ),
               ),

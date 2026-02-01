@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tracing_app/core/theming/app_styles.dart';
 import 'package:tracing_app/core/widgets/elevated_button_widget.dart';
-import 'package:tracing_app/feature/parent/screens/location_page.dart';
+import 'package:tracing_app/feature/location_page/screens/location_page.dart';
 import 'package:tracing_app/feature/parent/screens/video_call_page.dart';
 import 'package:tracing_app/feature/parent/screens/voice_call_page.dart';
 import 'package:tracing_app/core/widgets/appbar_part.dart';
@@ -11,22 +11,25 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(decoration: AppStyles.primaryGradientDecoration,
+    return Container(
+      constraints: const BoxConstraints.expand(),
+      decoration: AppStyles.primaryGradientDecoration,
       child: Padding(
         padding: const EdgeInsets.all(16),
-      
+
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-      const AppbarPart(title: "اسم التطبيق"),
+            const AppbarPart(title: "راصد "),
+            SizedBox(height: 10),
             const Text(
-              "مرحبا : اسم ولي الأمر",
+              "مرحبا : وسام محمد كمال  ",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
             ),
-      
-            const SizedBox(height: 20),
-      
+
+            const SizedBox(height: 40),
+
             ElevatedButtonWidget(
               onpress: () {
                 Navigator.push(
@@ -37,9 +40,9 @@ class HomePage extends StatelessWidget {
               title: "عرض الموقع الجغرافي",
               icon: Icons.location_on_outlined,
             ),
-      
+
             const SizedBox(height: 40),
-      
+
             Row(
               children: [
                 ElevatedButtonWidget(
@@ -54,9 +57,9 @@ class HomePage extends StatelessWidget {
                   title: "مكالمة فيديو",
                   icon: Icons.video_call_outlined,
                 ),
-      
+
                 const Spacer(),
-      
+
                 ElevatedButtonWidget(
                   onpress: () {
                     Navigator.push(

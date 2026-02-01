@@ -56,7 +56,7 @@ class _VerificationPageState extends State<VerificationPage> {
 
     return Scaffold(
       appBar: const AppbarPart(title: " تسجيل الدخول "),
-      body: Container(
+      body: Container(constraints: const BoxConstraints.expand(),
         decoration: AppStyles.primaryGradientDecoration,
         child: SafeArea(
           child: Center(
@@ -85,7 +85,7 @@ class _VerificationPageState extends State<VerificationPage> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        const SizedBox(height: 5),
+                        const SizedBox(height: 24),
 
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

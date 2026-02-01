@@ -16,26 +16,28 @@ class _StudentPageState extends State<StudentPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppbarPart(title: "اسم التطبيق"),
+      appBar: AppbarPart(title: "راصد "),
       body: Container(
+        constraints: const BoxConstraints.expand(),
         decoration: AppStyles.primaryGradientDecoration,
         child: Padding(
           padding: const EdgeInsets.all(15.0),
-          child: Column(mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                "مرحبا : اسم ولي الأمر",
+                "مرحبا : لوجي وسام محمد كمال  ",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                 textAlign: TextAlign.right,
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 50),
               ElevatedButtonWidget(
                 onpress: () {},
                 title: "تفعيل الموقع الجغرافي",
                 icon: Icons.location_on_outlined,
               ),
-              const SizedBox(height: 40),
+              const SizedBox(height: 60),
               Row(
                 children: [
                   ElevatedButtonWidget(
@@ -50,9 +52,9 @@ class _StudentPageState extends State<StudentPage> {
                     title: "مكالمة فيديو",
                     icon: Icons.video_call_outlined,
                   ),
-          
+
                   const Spacer(),
-          
+
                   ElevatedButtonWidget(
                     onpress: () {
                       Navigator.push(
@@ -67,7 +69,7 @@ class _StudentPageState extends State<StudentPage> {
                   ),
                 ],
               ),
-              const SizedBox(height: 40),
+              const SizedBox(height: 60),
               ElevatedButtonWidget(
                 onpress: () {},
                 title: " فتح في CHAT GPT ",
