@@ -1,5 +1,3 @@
-// lib/core/theming/theme_cubit.dart
-
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'theme_state.dart';

@@ -1,4 +1,3 @@
-
 import 'package:equatable/equatable.dart';
 import 'package:tracing_app/feature/auth/data/models/user_model.dart';
 
