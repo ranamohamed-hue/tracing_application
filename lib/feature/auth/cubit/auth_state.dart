@@ -11,7 +11,7 @@ abstract class AuthState extends Equatable {
 
 // الحالة الأولية عند بدء التطبيق (قبل التحقق من المستخدم)
 class AuthInitialState extends AuthState {}
-
+class AuthCheckingState extends AuthState {}
 // حالة التحميل: تُستخدم عند بدء التطبيق للتحقق من المستخدم المسجل دخوله
 class AuthLoadingState extends AuthState {}
 

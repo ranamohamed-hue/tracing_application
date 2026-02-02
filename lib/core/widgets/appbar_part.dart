@@ -21,7 +21,7 @@ class AppbarPart extends StatelessWidget implements PreferredSizeWidget {
             title,
             style: Theme.of(context).textTheme.headlineLarge?.copyWith(
               fontWeight: FontWeight.bold,
-              fontSize: 50,
+              fontSize: 30,
             ),
           ),
           const SizedBox(width: 80),

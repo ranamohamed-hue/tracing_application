@@ -7,7 +7,8 @@ class TextFormFieldWidget extends StatelessWidget {
   final TextEditingController controller;
   final IconData icon;
   final String? Function(String?)? validatorr;
-   final bool obscureText;
+  final bool obscureText;
+
   const TextFormFieldWidget({
     super.key,
     required this.title,
@@ -16,18 +17,23 @@ class TextFormFieldWidget extends StatelessWidget {
     required this.controller,
     required this.icon,
     required this.validatorr,
-     this.obscureText=false
+    this.obscureText = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(obscureText: obscureText,
+    return TextFormField(
+      controller: controller, 
+      
+      obscureText: obscureText,
       keyboardType: keyboardtype,
       validator: validatorr,
       decoration: InputDecoration(
         labelText: title,
         hintText: hinttext,
-        prefixIcon: IconButton(icon: Icon(icon), onPressed: () {}),
+       
+        prefixIcon: Icon(icon, color: Colors.grey.shade600),
+        
       ),
     );
   }

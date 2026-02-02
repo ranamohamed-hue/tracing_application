@@ -5,7 +5,30 @@ import 'package:tracing_app/feature/auth/data/repo/auth_repo.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   final AuthRepo authRepo;
-  AuthCubit(this.authRepo) : super(AuthInitialState());
+  AuthCubit(this.authRepo) : super(AuthInitialState()) {
+    // استدعاء التحقق من الحالة عند إنشاء الكيوبت
+    _checkAuthStatus();
+  }
+
+  // تعديل دالة التحقق من حالة المستخدم
+  Future<void> _checkAuthStatus() async {
+    // *** التغيير الرئيسي هنا ***
+    // عند بدء التحقق، أرسل حالة التحقق (السبلاش سكرين)
+    emit(AuthCheckingState());
+
+    final currentUser = await authRepo.getCurrentUser();
+
+    currentUser.fold(
+      (error) {
+        // إذا لم يكن هناك مستخدم، ارجع للحالة الأولية (شاشة اللوغن)
+        emit(AuthInitialState());
+      },
+      (userModel) {
+        // إذا كان هناك مستخدم، انتقل إلى حالة المصادقة الناجحة
+        emit(AuthenticatedState(userModel));
+      },
+    );
+  }
 
   Future<void> signUp({
     required UserModel userModel,
@@ -18,12 +41,8 @@ class AuthCubit extends Cubit<AuthState> {
     );
 
     result.fold(
-      (error) {
-        emit(SignUpErrorState(error));
-      },
-      (userModel) {
-        emit(SignUpSuccessState(userModel));
-      },
+      (error) => emit(SignUpErrorState(error)),
+      (userModel) => emit(AuthenticatedState(userModel)),
     );
   }
 
@@ -32,12 +51,8 @@ class AuthCubit extends Cubit<AuthState> {
     final result = await authRepo.login(email: email, password: password);
 
     result.fold(
-      (error) {
-        emit(LoginErrorState(error));
-      },
-      (userModel) {
-        emit(LoginSuccessState(userModel));
-      },
+      (error) => emit(LoginErrorState(error)),
+      (userModel) => emit(AuthenticatedState(userModel)),
     );
   }
 
@@ -45,11 +60,9 @@ class AuthCubit extends Cubit<AuthState> {
     emit(LogoutLoadingState());
     final result = await authRepo.logout();
     result.fold(
-      (error) {
-        emit(LogoutErrorState(error));
-      },
+      (error) => emit(LogoutErrorState(error)),
       (_) {
-        emit(LogoutSuccessState());
+        emit(AuthInitialState());
       },
     );
   }

@@ -71,6 +71,8 @@ class _OptFieldState extends State<OptField> {
           color: Colors.black87,
         ),
         validator: (value) {
+          return null;
+        
           
         },
         decoration: const InputDecoration(

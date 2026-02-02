@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tracing_app/core/theming/app_styles.dart';
 import 'package:tracing_app/core/widgets/appbar_part.dart';
+import 'package:tracing_app/feature/auth/cubit/auth_cubit.dart';
+import 'package:tracing_app/feature/auth/cubit/auth_state.dart';
+import 'package:tracing_app/feature/login/screens/sign_up_page.dart';
 import 'package:tracing_app/feature/login/widgets/login_prompt_widget.dart';
 import 'package:tracing_app/feature/login/widgets/text_form_field_widget.dart';
 
@@ -26,109 +30,161 @@ class _SignInPageState extends State<SignInPage> {
 
   @override
   Widget build(BuildContext context) {
-    return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-        statusBarIconBrightness: Brightness.light,
-      ),
-      child: Scaffold(
-        appBar: AppbarPart(title: "تسجيل الدخول"),
-        body: Container(
-          constraints: const BoxConstraints.expand(),
-          decoration: AppStyles.primaryGradientDecoration,
-          child: Padding(
-            padding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).viewInsets.bottom,
-            ),
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(24.0),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    SizedBox(height: 40),
-                    TextFormFieldWidget(
-                      title: "البريد الإلكتروني",
-                      hinttext: "أدخل بريدك الإلكتروني",
-                      keyboardtype: TextInputType.emailAddress,
-                      controller: _useremail,
-                      icon: Icons.email_outlined,
-                      validatorr: (value) {
-                        if (value == null || value.isEmpty) {
-                          return "من فضلك أدخل البريد الإلكتروني";
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(height: 24),
+    return BlocListener<AuthCubit, AuthState>(
+      listener: (context, state) {
+        // التعامل مع حالات النجاح
+        if (state is LoginSuccessState || state is AuthenticatedState) {
+          // يمكن إضافة تنقل هنا إذا لم يكن AuthWrapper يتعامل معه
+          Navigator.of(context).pushReplacementNamed('/location');
+        }
 
-                    TextFormFieldWidget(
-                      title: "كلمة المرور",
-                      hinttext: "أدخل كلمة المرور",
-                      keyboardtype: TextInputType.visiblePassword,
-                      controller: _userpassword,
-                      icon: Icons.lock,
-                      validatorr: (value) {
-                        if (value == null || value.isEmpty) {
-                          return "من فضلك أدخل كلمة المرور";
-                        }
-                        if (value.length < 10) {
-                          return "كلمة المرور ينبغي أن تكون على الأقل 10 أحرف";
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(height: 10),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: TextButton(
-                        onPressed: () {
-                          print("تم الضغط على 'هل نسيت كلمة المرور؟'");
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text(
-                                'سيتم توجيهك لصفحة استعادة كلمة المرور',
-                              ),
-                            ),
-                          );
+        // التعامل مع حالات الخطأ
+        if (state is LoginErrorState) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(state.error), backgroundColor: Colors.red),
+          );
+        }
+      },
+      child: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent,
+          statusBarIconBrightness: Brightness.light,
+        ),
+        child: Scaffold(
+          appBar: AppbarPart(title: "تسجيل الدخول"),
+          body: Container(
+            constraints: const BoxConstraints.expand(),
+            decoration: AppStyles.primaryGradientDecoration,
+            child: Padding(
+              padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom,
+              ),
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(24.0),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      const SizedBox(height: 40),
+                      TextFormFieldWidget(
+                        title: "البريد الإلكتروني",
+                        hinttext: "أدخل بريدك الإلكتروني",
+                        keyboardtype: TextInputType.emailAddress,
+                        controller: _useremail,
+                        icon: Icons.email_outlined,
+                        validatorr: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "من فضلك أدخل البريد الإلكتروني";
+                          }
+                          // يمكن إضافة تحقق أكثر صرامة للبريد الإلكتروني
+                          if (!RegExp(
+                            r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+                          ).hasMatch(value)) {
+                            return "الرجاء إدخال بريد إلكتروني صحيح";
+                          }
+                          return null;
                         },
-                        style: TextButton.styleFrom(padding: EdgeInsets.zero),
-                        child: Text(
-                          "هل نسيت كلمة المرور؟",
-                          style: TextStyle(
-                            decoration: TextDecoration.underline,
-                            decorationColor: Colors.white,
-                            color: Colors.white,
-                            fontSize: 18,
+                      ),
+                      const SizedBox(height: 24),
+
+                      TextFormFieldWidget(
+                        title: "كلمة المرور",
+                        hinttext: "أدخل كلمة المرور",
+                        keyboardtype: TextInputType.visiblePassword,
+                        controller: _userpassword,
+                        icon: Icons.lock,
+                        obscureText: true, // إضافة هذا لإخفاء كلمة المرور
+                        validatorr: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "من فضلك أدخل كلمة المرور";
+                          }
+                          // تقليل الحد الأدنى لكلمة المرور
+                          if (value.length < 6) {
+                            return "كلمة المرور ينبغي أن تكون على الأقل 6 أحرف";
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 10),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: TextButton(
+                          onPressed: () {
+                            print("تم الضغط على 'هل نسيت كلمة المرور؟'");
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text(
+                                  'سيتم توجيهك لصفحة استعادة كلمة المرور',
+                                ),
+                              ),
+                            );
+                          },
+                          style: TextButton.styleFrom(padding: EdgeInsets.zero),
+                          child: Text(
+                            "هل نسيت كلمة المرور؟",
+                            style: TextStyle(
+                              decoration: TextDecoration.underline,
+                              decorationColor: Colors.white,
+                              color: Colors.white,
+                              fontSize: 18,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 20),
+                      const SizedBox(height: 20),
 
-                    Center(
-                      child: SizedBox(
-                        width: 200,
-                        height: 50,
-                        child: ElevatedButton.icon(
-                          icon: const Icon(Icons.verified_outlined),
-                          label: const Text("إنشاء حساب جديد"),
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {}
-                          },
-                        ),
+                      // زر تسجيل الدخول مع مؤشر التحميل
+                      BlocBuilder<AuthCubit, AuthState>(
+                        builder: (context, state) {
+                          // إذا كانت حالة التحميل نشطة
+                          if (state is LoginLoadingState) {
+                            return const Center(
+                              child: CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  Colors.white,
+                                ),
+                              ),
+                            );
+                          }
+
+                          // otherwise, show the login button
+                          return SizedBox(
+                            width: 200,
+                            height: 50,
+                            child: ElevatedButton.icon(
+                              icon: const Icon(Icons.login_outlined),
+                              label: const Text("تسجيل الدخول"),
+                              onPressed: () {
+                                if (_formKey.currentState!.validate()) {
+                                  context.read<AuthCubit>().login(
+                                    email: _useremail.text,
+                                    password: _userpassword.text,
+                                  );
+                                }
+                              },
+                            ),
+                          );
+                        },
                       ),
-                    ),
-                    const SizedBox(height: 25),
+                      const SizedBox(height: 25),
 
-                    // --- رابط إنشاء حساب جديد ---
-                    LoginPromptWidget(
-                      comment: "ليس لديك حساب؟ ",
-                      action: "قم بإنشاء حساب الآن",
-                    ),
-                  ],
+                      // رابط إنشاء حساب جديد
+                      LoginPromptWidget(
+                        comment: "ليس لديك حساب؟ ",
+                        action: "قم بإنشاء حساب الآن",
+                        onPressed: () {
+                          // الانتقال إلى صفحة إنشاء حساب جديد
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const SignUpPage(),
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

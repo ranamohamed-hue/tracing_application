@@ -170,7 +170,7 @@ class AppTheme {
         ),
       ),
 
-      cardTheme: const CardTheme(
+      cardTheme: const CardThemeData(
         color: AppColors.lightSurface,
         elevation: 2,
         shape: RoundedRectangleBorder(
@@ -334,7 +334,7 @@ class AppTheme {
         ),
       ),
 
-      cardTheme: const CardTheme(
+      cardTheme: const CardThemeData(
         color: AppColors.darkSurface,
         elevation: 2,
         shape: RoundedRectangleBorder(

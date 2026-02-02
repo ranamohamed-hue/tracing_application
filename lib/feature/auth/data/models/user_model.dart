@@ -5,6 +5,7 @@ class UserModel extends Equatable {
   final String username;
   final String email;
   final String userType;
+  
 
   const UserModel({
     required this.uid,
@@ -37,9 +38,9 @@ class UserModel extends Equatable {
   // دالة copyWith لتحديث بيانات المستخدم بسهولة
   UserModel copyWith({String? username, String? userType}) {
     return UserModel(
-      uid: this.uid, // الـ uid لا يتغير أبداً
+      uid: uid, // الـ uid لا يتغير أبداً
       username: username ?? this.username,
-      email: this.email, // البريد عادةً ما يُغير من مكان آخر
+      email: email, // البريد عادةً ما يُغير من مكان آخر
       userType: userType ?? this.userType,
     );
   }

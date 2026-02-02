@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tracing_app/core/theming/app_styles.dart';
 import 'package:tracing_app/feature/location_page/widgets/action_button.dart';
-import 'package:latlong2/latlong.dart';
 import 'package:http/http.dart' as http;
 
 class LocationPage extends StatefulWidget {
